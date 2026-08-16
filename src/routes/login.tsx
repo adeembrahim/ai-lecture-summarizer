@@ -1,9 +1,3 @@
-import "@/lib/amplify";
-import {
-  signIn,
-  signOut,
-} from "aws-amplify/auth";
-
 import {
   createFileRoute,
   Link,
@@ -11,6 +5,11 @@ import {
 } from "@tanstack/react-router";
 
 import { useState } from "react";
+
+import "@/lib/amplify";
+
+import { signIn } from "aws-amplify/auth";
+
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/PageHeader";
 
@@ -36,37 +35,10 @@ function LoginPage() {
     setLoading(true);
 
     try {
-      let result;
-
-      try {
-        // Try normal sign in first
-        result = await signIn({
-          username: email,
-          password,
-        });
-      } catch (err) {
-        // If another user is already signed in,
-        // sign them out and try again.
-        if (
-          err instanceof Error &&
-          err.message.toLowerCase().includes(
-            "already a signed in user"
-          )
-        ) {
-          console.log(
-            "Existing user detected. Signing out..."
-          );
-
-          await signOut();
-
-          result = await signIn({
-            username: email,
-            password,
-          });
-        } else {
-          throw err;
-        }
-      }
+      const result = await signIn({
+        username: email,
+        password,
+      });
 
       console.log("Sign in result:", result);
 
@@ -104,7 +76,6 @@ function LoginPage() {
         onSubmit={handleLogin}
         className="surface-card mt-8 space-y-5 rounded-3xl p-6 sm:p-8"
       >
-        {/* Email */}
         <div>
           <label
             htmlFor="email"
@@ -127,7 +98,6 @@ function LoginPage() {
           />
         </div>
 
-        {/* Password */}
         <div>
           <label
             htmlFor="password"
@@ -150,14 +120,12 @@ function LoginPage() {
           />
         </div>
 
-        {/* Error */}
         {error && (
           <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
             {error}
           </div>
         )}
 
-        {/* Sign in button */}
         <Button
           type="submit"
           variant="hero"
@@ -169,7 +137,6 @@ function LoginPage() {
             : "Sign in"}
         </Button>
 
-        {/* Create account */}
         <p className="text-center text-sm text-muted-foreground">
           Don't have an account?{" "}
           <Link

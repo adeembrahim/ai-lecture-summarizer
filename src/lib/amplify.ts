@@ -1,6 +1,6 @@
 import { Amplify } from "aws-amplify";
 
-Amplify.configure({
+const amplifyConfig = {
   Auth: {
     Cognito: {
       userPoolId: "us-east-1_ZZajqMPM0",
@@ -11,6 +11,6 @@ Amplify.configure({
       signUpVerificationMethod: "code",
     },
   },
-});
+};
 
 export default Amplify;

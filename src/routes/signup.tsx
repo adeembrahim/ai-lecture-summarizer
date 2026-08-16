@@ -1,10 +1,3 @@
-import "@/lib/amplify";
-
-import {
-  signUp,
-  confirmSignUp,
-} from "aws-amplify/auth";
-
 import {
   createFileRoute,
   Link,
@@ -12,6 +5,14 @@ import {
 } from "@tanstack/react-router";
 
 import { useState } from "react";
+
+import "@/lib/amplify";
+
+import {
+  signUp,
+  confirmSignUp,
+} from "aws-amplify/auth";
+
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/PageHeader";
 
@@ -28,17 +29,12 @@ function SignupPage() {
     useState("");
 
   const [code, setCode] = useState("");
-
   const [showVerification, setShowVerification] =
     useState(false);
 
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-
-  // ----------------------------------------
-  // Create account
-  // ----------------------------------------
 
   const handleSignup = async (
     event: React.FormEvent<HTMLFormElement>
@@ -95,10 +91,6 @@ function SignupPage() {
     }
   };
 
-  // ----------------------------------------
-  // Verify account
-  // ----------------------------------------
-
   const handleVerification = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -145,10 +137,6 @@ function SignupPage() {
       setLoading(false);
     }
   };
-
-  // ----------------------------------------
-  // Verification page
-  // ----------------------------------------
 
   if (showVerification) {
     return (
@@ -223,10 +211,6 @@ function SignupPage() {
     );
   }
 
-  // ----------------------------------------
-  // Create account page
-  // ----------------------------------------
-
   return (
     <div className="mx-auto max-w-md px-4 py-12 sm:py-16">
       <PageHeader
@@ -239,7 +223,6 @@ function SignupPage() {
         onSubmit={handleSignup}
         className="surface-card mt-8 space-y-5 rounded-3xl p-6 sm:p-8"
       >
-        {/* Email */}
         <div>
           <label
             htmlFor="email"
@@ -262,7 +245,6 @@ function SignupPage() {
           />
         </div>
 
-        {/* Password */}
         <div>
           <label
             htmlFor="password"
@@ -285,7 +267,6 @@ function SignupPage() {
           />
         </div>
 
-        {/* Confirm password */}
         <div>
           <label
             htmlFor="confirmPassword"
@@ -310,14 +291,12 @@ function SignupPage() {
           />
         </div>
 
-        {/* Error */}
         {error && (
           <div className="rounded-xl border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">
             {error}
           </div>
         )}
 
-        {/* Create account */}
         <Button
           type="submit"
           variant="hero"
@@ -329,7 +308,6 @@ function SignupPage() {
             : "Create account"}
         </Button>
 
-        {/* Sign in */}
         <p className="text-center text-sm text-muted-foreground">
           Already have an account?{" "}
           <Link
