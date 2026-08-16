@@ -18,7 +18,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 
-import "../amplify-config";
+import "@/lib/amplify";
 
 function NotFoundComponent() {
   return (
