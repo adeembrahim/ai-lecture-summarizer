@@ -1,3 +1,9 @@
+import "@/lib/amplify";
+import {
+  signIn,
+  signOut,
+} from "aws-amplify/auth";
+
 import {
   createFileRoute,
   Link,
@@ -5,14 +11,6 @@ import {
 } from "@tanstack/react-router";
 
 import { useState } from "react";
-
-import "@/lib/amplify";
-
-import {
-  signIn,
-  signOut,
-} from "aws-amplify/auth";
-
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/PageHeader";
 

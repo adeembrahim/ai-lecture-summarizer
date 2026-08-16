@@ -1,11 +1,3 @@
-import {
-  createFileRoute,
-  Link,
-  useNavigate,
-} from "@tanstack/react-router";
-
-import { useState } from "react";
-
 import "@/lib/amplify";
 
 import {
@@ -13,6 +5,13 @@ import {
   confirmSignUp,
 } from "aws-amplify/auth";
 
+import {
+  createFileRoute,
+  Link,
+  useNavigate,
+} from "@tanstack/react-router";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PageHeader } from "@/components/layout/PageHeader";
 
